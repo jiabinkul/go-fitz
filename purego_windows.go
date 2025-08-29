@@ -5,6 +5,8 @@ package fitz
 import (
 	"fmt"
 	"syscall"
+	"os"
+	"path/filepath"
 
 	"golang.org/x/sys/windows"
 )
