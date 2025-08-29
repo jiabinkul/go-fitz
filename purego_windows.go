@@ -9,15 +9,31 @@ import (
 	"golang.org/x/sys/windows"
 )
 
-const (
-	libname = "libmupdf.dll"
-)
+// 自定义 DLL 目录
+var customDLLDir string
+
+// SetDLLDir 设置 libmupdf.dll 搜索目录
+func SetDLLDir(dir string) {
+	customDLLDir = dir
+}
 
 // loadLibrary loads the dll and panics on error.
 func loadLibrary() uintptr {
-	handle, err := syscall.LoadLibrary(libname)
+	dllPath := "libmupdf.dll"
+
+	// 如果指定了自定义目录，则使用完整路径
+	if customDLLDir != "" {
+		dllPath = filepath.Join(customDLLDir, "libmupdf.dll")
+	}
+
+	// 检查文件是否存在
+	if _, err := os.Stat(dllPath); os.IsNotExist(err) {
+		panic(fmt.Errorf("libmupdf.dll 不存在: %s", dllPath))
+	}
+
+	handle, err := syscall.LoadLibrary(dllPath)
 	if err != nil {
-		panic(fmt.Errorf("cannot load library %s: %w", libname, err))
+		panic(fmt.Errorf("无法加载库 %s: %w", dllPath, err))
 	}
 
 	return uintptr(handle)
