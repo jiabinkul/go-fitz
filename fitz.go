@@ -32,6 +32,10 @@ var FzVersion = "1.24.9"
 
 var dllPath = "libmupdf.dll"
 
+func SetDLLPath(path string) {
+    dllPath = path
+}
+
 // Outline type.
 type Outline struct {
 	// Hierarchy level of the entry (starting from 1).
