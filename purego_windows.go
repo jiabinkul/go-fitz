@@ -9,8 +9,6 @@ import (
 	"golang.org/x/sys/windows"
 )
 
-var libmupdf uintptr
-
 // EnsureDLLLoaded loads the DLL manually. Must be called before using other APIs.
 func EnsureDLLLoaded(path string) error {
 	if libmupdf != 0 {

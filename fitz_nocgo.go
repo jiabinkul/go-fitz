@@ -516,6 +516,7 @@ func (f *Document) Close() error {
 }
 
 var (
+	libmupdf                   uintptr
 	fzBoundPage                *bundle
 	fzTransformRect            *bundle
 	fzRoundRect                *bundle
