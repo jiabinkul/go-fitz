@@ -12,7 +12,6 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/ebitengine/purego"
 	"github.com/jupiterrider/ffi"
 )
 
@@ -569,8 +568,10 @@ var (
 	fzPrintStextTrailerAsHTML  func(ctx *fzContext, out *fzOutput)
 )
 
-func init() {
-	libmupdf = loadLibrary()
+func InitMuPDF() error {
+	if libmupdf == 0 {
+		return fmt.Errorf("libmupdf not loaded. Call EnsureDLLLoaded(path) first")
+	}
 
 	if os.Getenv("FZ_VERSION") != "" {
 		FzVersion = os.Getenv("FZ_VERSION")
@@ -629,6 +630,8 @@ func init() {
 	if ver != "" {
 		FzVersion = ver
 	}
+
+	return nil
 }
 
 func version() string {

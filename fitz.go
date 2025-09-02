@@ -30,12 +30,6 @@ var MaxStore = 256 << 20
 // It is also possible to set `FZ_VERSION` environment variable.
 var FzVersion = "1.24.9"
 
-var dllPath = "libmupdf.dll"
-
-func SetDLLPath(path string) {
-    dllPath = path
-}
-
 // Outline type.
 type Outline struct {
 	// Hierarchy level of the entry (starting from 1).
