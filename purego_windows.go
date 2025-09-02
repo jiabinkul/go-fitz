@@ -9,15 +9,11 @@ import (
 	"golang.org/x/sys/windows"
 )
 
-const (
-	libname = "libmupdf.dll"
-)
-
 // loadLibrary loads the dll and panics on error.
 func loadLibrary() uintptr {
-	handle, err := syscall.LoadLibrary(libname)
+	handle, err := syscall.LoadLibrary(dllPath)
 	if err != nil {
-		panic(fmt.Errorf("cannot load library %s: %w", libname, err))
+		panic(fmt.Errorf("cannot load library %s: %w", dllPath, err))
 	}
 
 	return uintptr(handle)
