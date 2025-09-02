@@ -668,7 +668,7 @@ func (b *bundle) call(rValue unsafe.Pointer, aValues ...unsafe.Pointer) {
 
 func newBundle(name string, rType *ffi.Type, aTypes ...*ffi.Type) *bundle {
 	b := new(bundle)
-	b.sym = procAddress(libmupdf, name)
+	b.sym = procAddress(name)
 
 	nArgs := uint32(len(aTypes))
 
