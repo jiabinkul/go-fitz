@@ -3,6 +3,8 @@
 package fitz
 
 import (
+	"fmt"
+	"github.com/ebitengine/purego"
 	"image"
 	"io"
 	"os"
