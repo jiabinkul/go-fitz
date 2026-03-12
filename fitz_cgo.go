@@ -54,12 +54,12 @@ fz_page *load_page(fz_context *ctx, fz_document *doc, int number) {
 
 int run_page_contents(fz_context *ctx, fz_page *page, fz_device *dev, fz_matrix transform, fz_cookie *cookie) {
 	fz_try(ctx) {
-		fz_run_page_contents(ctx, page, dev, transform, cookie);
+		// 关键修改：用 fz_run_page（整页，包括注释/签章）
+		fz_run_page(ctx, page, dev, transform, cookie);
 	}
 	fz_catch(ctx) {
 		return 0;
 	}
-
 	return 1;
 }
 */
