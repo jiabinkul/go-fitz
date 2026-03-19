@@ -526,7 +526,6 @@ var (
 	fzScale                    *bundle
 	fzNewDrawDevice            *bundle
 	fzRunPageContents          *bundle
-	fzRunPage                  *bundle
 	fzNewBufferFromPixmapAsPNG *bundle
 	fzNewStextPage             *bundle
 	fzNewSvgDevice             *bundle
@@ -586,8 +585,6 @@ func InitMuPDF() error {
 	fzScale = newBundle("fz_scale", &typeFzMatrix, &ffi.TypeFloat, &ffi.TypeFloat)
 	fzNewDrawDevice = newBundle("fz_new_draw_device", &ffi.TypePointer, &ffi.TypePointer, &typeFzMatrix, &ffi.TypePointer)
 	fzRunPageContents = newBundle("fz_run_page_contents", &ffi.TypeVoid, &ffi.TypePointer, &ffi.TypePointer, &ffi.TypePointer, &typeFzMatrix, &ffi.TypePointer)
-	fzRunPage = newBundle("fz_run_page", &ffi.TypeVoid,
-		&ffi.TypePointer, &ffi.TypePointer, &ffi.TypePointer, &typeFzMatrix, &ffi.TypePointer)
 	fzNewBufferFromPixmapAsPNG = newBundle("fz_new_buffer_from_pixmap_as_png", &ffi.TypePointer, &ffi.TypePointer, &ffi.TypePointer, &typeFzColorParams)
 	fzNewStextPage = newBundle("fz_new_stext_page", &ffi.TypePointer, &ffi.TypePointer, &typeFzRect)
 	fzNewSvgDevice = newBundle("fz_new_svg_device", &ffi.TypePointer, &ffi.TypePointer, &ffi.TypePointer, &ffi.TypeFloat, &ffi.TypeFloat, &ffi.TypeSint32, &ffi.TypeSint32)
